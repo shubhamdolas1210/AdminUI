@@ -1,0 +1,44 @@
+.TableData {
+  margin: 20px;
+}
+
+.customers {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.customers th,
+.customers td {
+  border-bottom: 1px solid #ddd;
+  padding: 8px 5px;
+  text-align: center;
+}
+.customers th {
+  color: var(--css-black);
+}
+.customers tr:hover {
+  background-color: #ddd;
+}
+
+.iconSpace {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.iconSpace svg {
+  font-size: 20.5px;
+}
+.delete-icon {
+  color: red;
+  margin-bottom: 5px;
+}
+.edit-icon {
+  margin-bottom: 5px;
+}
+@media (max-width: 600px) {
+  .customers th,
+  .customers td {
+    padding: 5px;
+  }
+}

@@ -1,18 +1,20 @@
+.container {
+  margin: 10px 20px 0px 20px;
+}
 .Searchbar {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 95%;
-  margin: 10px 20px 20px 20px;
+  width: 100%;
 }
 .Searchbar input {
   box-sizing: border-box;
   padding: 5px;
   width: 100%;
-  border: 1px solid grey;
+  border: 1px solid#ddd;
   border-radius: 2px;
   outline: none;
 }
 .Searchbar input::placeholder {
-  opacity: 0.6;
+  opacity: 0.5;
 }
