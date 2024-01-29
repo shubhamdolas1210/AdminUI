@@ -1,0 +1,18 @@
+.Searchbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+  margin: 10px 20px 20px 20px;
+}
+.Searchbar input {
+  box-sizing: border-box;
+  padding: 5px;
+  width: 100%;
+  border: 1px solid grey;
+  border-radius: 2px;
+  outline: none;
+}
+.Searchbar input::placeholder {
+  opacity: 0.6;
+}
