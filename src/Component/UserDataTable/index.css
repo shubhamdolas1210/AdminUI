@@ -41,4 +41,15 @@
   .customers td {
     padding: 5px;
   }
+  .delete-icon {
+    color: red;
+    margin-bottom: 5px;
+  }
+  .edit-icon {
+    margin-bottom: 5px;
+  }
+  .iconSpace {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
