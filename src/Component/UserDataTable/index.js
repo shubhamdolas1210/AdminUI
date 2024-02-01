@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import "./index.css";
-import TableHeader from "../TableHeader/index.js";
+import TableHeader from "../TableHeader";
 import TableBody from "../TableBody";
 import Pagination from "../Pagination";
+import Searchbar from "../Searchbar";
 
 const UserDataTable = ({ userDetails }) => {
   const rowsPerPage = 10;
@@ -17,6 +18,20 @@ const UserDataTable = ({ userDetails }) => {
   const [selectedRows, setSelectedRows] = useState([]);
   const [isHeadingCheckboxChecked, setIsHeadingCheckboxChecked] =
     useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = (query) => {
+    const lowerCaseQuery = query.toLowerCase();
+    const filteredData = userDetails.filter(
+      (user) =>
+        user.name.toLowerCase().includes(lowerCaseQuery) ||
+        user.email.toLowerCase().includes(lowerCaseQuery) ||
+        user.role.toLowerCase().includes(lowerCaseQuery)
+    );
+
+    setTableData(filteredData);
+    setSearchTerm(query);
+  };
 
   useEffect(() => {
     setTableData(userDetails);
@@ -96,6 +111,7 @@ const UserDataTable = ({ userDetails }) => {
 
   return (
     <div className="TableData">
+      <Searchbar onSearch={handleSearch} />
       <table className="customers">
         <TableHeader
           isHeadingCheckboxChecked={isHeadingCheckboxChecked}
@@ -118,7 +134,9 @@ const UserDataTable = ({ userDetails }) => {
         itemsPerPage={rowsPerPage}
         onPageChange={handlePageChange}
       />
-      <button onClick={handleDeleteSelected}>Delete Selected</button>
+      <button className="DeleteSelected-btn" onClick={handleDeleteSelected}>
+        Delete Selected
+      </button>
     </div>
   );
 };

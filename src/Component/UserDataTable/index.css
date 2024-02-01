@@ -38,6 +38,23 @@
 .edit-icon {
   margin-bottom: 5px;
 }
+.DeleteSelected-btn {
+  background-color: #f44336;
+  border-radius: 15px;
+  margin-right: 10px;
+  color: white;
+  border: 1px solid #f44336;
+  outline: none;
+  padding: 2px 8px;
+}
+.DeleteSelected-btn {
+  background-color: #f44336;
+  border-radius: 15px;
+  margin-left: 65px;
+  border: 1px solid #f44336;
+  outline: none;
+  padding: 2px 8px;
+}
 @media (max-width: 600px) {
   .customers th,
   .customers td {

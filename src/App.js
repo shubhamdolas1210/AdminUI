@@ -1,5 +1,4 @@
 import "./App.css";
-import Searchbar from "./Component/Searchbar";
 import UserDataTable from "./Component/UserDataTable";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -23,7 +22,6 @@ function App() {
 
   return (
     <div>
-      <Searchbar />
       <UserDataTable userDetails={data} />
     </div>
   );
