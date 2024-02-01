@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./index.css";
-import UserTableRow from "../UserTableRow";
+import TableHeader from "../TableHeader/index.js";
+import TableBody from "../TableBody";
 import Pagination from "../Pagination";
-
-// ... other imports
 
 const UserDataTable = ({ userDetails }) => {
   const rowsPerPage = 10;
@@ -98,37 +97,21 @@ const UserDataTable = ({ userDetails }) => {
   return (
     <div className="TableData">
       <table className="customers">
-        <thead>
-          <tr>
-            <th>
-              <input
-                type="checkbox"
-                checked={isHeadingCheckboxChecked}
-                onChange={handleHeadingCheckboxChange}
-              />
-            </th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentRows.map((rowData) => (
-            <UserTableRow
-              key={rowData.id}
-              rowData={rowData}
-              editingUserId={editingUserId}
-              editFormData={editFormData}
-              handleEdit={handleEdit}
-              handleEditFormChange={handleEditFormChange}
-              handleEditSubmit={handleEditSubmit}
-              handleDelete={handleDelete}
-              handleCheckboxChange={handleCheckboxChange}
-              isSelected={selectedRows.includes(rowData.id)}
-            />
-          ))}
-        </tbody>
+        <TableHeader
+          isHeadingCheckboxChecked={isHeadingCheckboxChecked}
+          onHeadingCheckboxChange={handleHeadingCheckboxChange}
+        />
+        <TableBody
+          currentRows={currentRows}
+          editingUserId={editingUserId}
+          editFormData={editFormData}
+          handleEdit={handleEdit}
+          handleEditFormChange={handleEditFormChange}
+          handleEditSubmit={handleEditSubmit}
+          handleDelete={handleDelete}
+          handleCheckboxChange={handleCheckboxChange}
+          selectedRows={selectedRows}
+        />
       </table>
       <Pagination
         totalItems={tableData.length}
