@@ -9,11 +9,17 @@ const UserTableRow = ({
   handleEditFormChange,
   handleEditSubmit,
   handleDelete,
+  handleCheckboxChange,
+  isSelected,
 }) => {
   return (
     <tr key={rowData.id}>
       <td>
-        <input type="checkbox" />
+        <input
+          type="checkbox"
+          checked={isSelected}
+          onChange={() => handleCheckboxChange(rowData.id)}
+        />
       </td>
       <td>
         {editingUserId === rowData.id ? (
@@ -76,4 +82,5 @@ const UserTableRow = ({
     </tr>
   );
 };
+
 export default UserTableRow;

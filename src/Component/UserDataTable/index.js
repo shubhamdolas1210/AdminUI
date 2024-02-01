@@ -3,6 +3,8 @@ import "./index.css";
 import UserTableRow from "../UserTableRow";
 import Pagination from "../Pagination";
 
+// ... other imports
+
 const UserDataTable = ({ userDetails }) => {
   const rowsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,6 +15,9 @@ const UserDataTable = ({ userDetails }) => {
     email: "",
     role: "",
   });
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [isHeadingCheckboxChecked, setIsHeadingCheckboxChecked] =
+    useState(false);
 
   useEffect(() => {
     setTableData(userDetails);
@@ -60,13 +65,47 @@ const UserDataTable = ({ userDetails }) => {
     console.log("Updated Row with ID:", id);
   };
 
+  const handleCheckboxChange = (rowId) => {
+    const updatedSelectedRows = [...selectedRows];
+    const index = updatedSelectedRows.indexOf(rowId);
+
+    if (index !== -1) {
+      updatedSelectedRows.splice(index, 1);
+    } else {
+      updatedSelectedRows.push(rowId);
+    }
+
+    setSelectedRows(updatedSelectedRows);
+  };
+
+  const handleDeleteSelected = () => {
+    const updatedTableData = tableData.filter(
+      (row) => !selectedRows.includes(row.id)
+    );
+
+    setTableData(updatedTableData);
+    setSelectedRows([]);
+  };
+
+  const handleHeadingCheckboxChange = () => {
+    setIsHeadingCheckboxChecked(!isHeadingCheckboxChecked);
+    const updatedSelectedRows = isHeadingCheckboxChecked
+      ? []
+      : currentRows.map((row) => row.id);
+    setSelectedRows(updatedSelectedRows);
+  };
+
   return (
     <div className="TableData">
       <table className="customers">
         <thead>
           <tr>
             <th>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={isHeadingCheckboxChecked}
+                onChange={handleHeadingCheckboxChange}
+              />
             </th>
             <th>Name</th>
             <th>Email</th>
@@ -85,6 +124,8 @@ const UserDataTable = ({ userDetails }) => {
               handleEditFormChange={handleEditFormChange}
               handleEditSubmit={handleEditSubmit}
               handleDelete={handleDelete}
+              handleCheckboxChange={handleCheckboxChange}
+              isSelected={selectedRows.includes(rowData.id)}
             />
           ))}
         </tbody>
@@ -94,6 +135,7 @@ const UserDataTable = ({ userDetails }) => {
         itemsPerPage={rowsPerPage}
         onPageChange={handlePageChange}
       />
+      <button onClick={handleDeleteSelected}>Delete Selected</button>
     </div>
   );
 };
