@@ -6,12 +6,11 @@
   width: 100%;
   border-collapse: collapse;
 }
-
 .customers th,
 .customers td {
   border-bottom: 1px solid #ddd;
-  padding: 8px 5px;
-  text-align: center;
+  padding: 10px 80px;
+  text-align: left;
 }
 .customers th {
   color: var(--css-black);
@@ -19,7 +18,10 @@
 .customers tr:hover {
   background-color: #ddd;
 }
-
+.input-editSave {
+  border: none;
+  outline: none;
+}
 .iconSpace {
   display: flex;
   justify-content: center;
